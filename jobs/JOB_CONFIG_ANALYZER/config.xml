@@ -1,0 +1,385 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description>A parser and report generator for a Jenkins project configuration. Helps generate a simple project summary and configuration archive.</description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <job-metadata plugin="metadata@1.1.0b">
+      <values class="linked-list">
+        <metadata-string>
+          <name>job-type</name>
+          <description>Options: visualization,data-source
+Galaxy: tool.tool_type</description>
+          <parent class="job-metadata" reference="../../.."/>
+          <generated>false</generated>
+          <exposedToEnvironment>false</exposedToEnvironment>
+          <value>visualization</value>
+        </metadata-string>
+        <metadata-string>
+          <name>output-format</name>
+          <description>This is the data type of the output file. It can be one of the supported data types ( e.g., &quot;tabular&quot; ) or the format of the tool&apos;s input dataset ( e.g., format=&quot;input&quot; ). 
+It can also be an image type if the output is destined for visualization</description>
+          <parent class="job-metadata" reference="../../.."/>
+          <generated>false</generated>
+          <exposedToEnvironment>false</exposedToEnvironment>
+          <value>csv,rds,png</value>
+        </metadata-string>
+        <metadata-string>
+          <name>metadata-source</name>
+          <description>This reads the metadata information from the tool&apos;s input dataset properties file(named with the extension.properties)</description>
+          <parent class="job-metadata" reference="../../.."/>
+          <generated>false</generated>
+          <exposedToEnvironment>true</exposedToEnvironment>
+          <value>properties</value>
+        </metadata-string>
+        <metadata-string>
+          <name>project-revision</name>
+          <description>Last SVN revision number that this is based on. If modifications are made then add -mod to this revision number</description>
+          <parent class="job-metadata" reference="../../.."/>
+          <generated>false</generated>
+          <exposedToEnvironment>true</exposedToEnvironment>
+          <value></value>
+        </metadata-string>
+        <metadata-string>
+          <name>deprecated</name>
+          <description>A flag (true/false) to indicate whether a job is deprecated or active</description>
+          <parent class="job-metadata" reference="../../.."/>
+          <generated>false</generated>
+          <exposedToEnvironment>false</exposedToEnvironment>
+          <value>false</value>
+        </metadata-string>
+        <metadata-tree>
+          <name>stats-engine</name>
+          <parent class="job-metadata" reference="../../.."/>
+          <generated>false</generated>
+          <exposedToEnvironment>false</exposedToEnvironment>
+          <children class="linked-list">
+            <metadata-string>
+              <name>library</name>
+              <description>comma separated list of stat-engine libraries required for the job.</description>
+              <parent class="metadata-tree" reference="../../.."/>
+              <generated>false</generated>
+              <exposedToEnvironment>true</exposedToEnvironment>
+              <value>caret,sm</value>
+            </metadata-string>
+            <metadata-string>
+              <name>export-session</name>
+              <description>Options: true/false If the code supports it, it will export session data from the stat engine for debugging purposes</description>
+              <parent class="metadata-tree" reference="../../.."/>
+              <generated>false</generated>
+              <exposedToEnvironment>true</exposedToEnvironment>
+              <value>false</value>
+            </metadata-string>
+          </children>
+        </metadata-tree>
+        <metadata-tree>
+          <name>job-info</name>
+          <parent class="job-metadata" reference="../../.."/>
+          <generated>true</generated>
+          <exposedToEnvironment>false</exposedToEnvironment>
+          <children class="linked-list">
+            <metadata-tree>
+              <name>last-saved</name>
+              <description></description>
+              <parent class="metadata-tree" reference="../../.."/>
+              <generated>true</generated>
+              <exposedToEnvironment>false</exposedToEnvironment>
+              <children class="linked-list">
+                <metadata-date>
+                  <name>time</name>
+                  <description></description>
+                  <parent class="metadata-tree" reference="../../.."/>
+                  <generated>true</generated>
+                  <exposedToEnvironment>false</exposedToEnvironment>
+                  <value>
+                    <time>1524774250867</time>
+                    <timezone>America/New_York</timezone>
+                  </value>
+                  <checked>false</checked>
+                </metadata-date>
+                <metadata-tree>
+                  <name>user</name>
+                  <parent class="metadata-tree" reference="../../.."/>
+                  <generated>true</generated>
+                  <exposedToEnvironment>false</exposedToEnvironment>
+                  <children class="linked-list">
+                    <metadata-string>
+                      <name>display-name</name>
+                      <description></description>
+                      <parent class="metadata-tree" reference="../../.."/>
+                      <generated>true</generated>
+                      <exposedToEnvironment>false</exposedToEnvironment>
+                      <value>Ioannis Moutsatsos</value>
+                    </metadata-string>
+                    <metadata-string>
+                      <name>full-name</name>
+                      <description></description>
+                      <parent class="metadata-tree" reference="../../.."/>
+                      <generated>true</generated>
+                      <exposedToEnvironment>false</exposedToEnvironment>
+                      <value>Ioannis Moutsatsos</value>
+                    </metadata-string>
+                  </children>
+                </metadata-tree>
+              </children>
+            </metadata-tree>
+          </children>
+        </metadata-tree>
+      </values>
+    </job-metadata>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.25">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <org.biouno.unochoice.ChoiceParameter plugin="uno-choice@2.1">
+          <name>PROJECT_NAME</name>
+          <description>&lt;p&gt;Select a Jenkins Project/Job to review</description>
+          <randomName>choice-parameter-1249407980061711</randomName>
+          <visibleItemCount>1</visibleItemCount>
+          <script class="org.biouno.unochoice.model.ScriptlerScript">
+            <scriptlerScriptId>displayAllJobs.groovy</scriptlerScriptId>
+            <parameters class="linked-hash-map"/>
+          </script>
+          <projectName>JOB_CONFIG_ANALYZER</projectName>
+          <choiceType>PT_SINGLE_SELECT</choiceType>
+          <filterable>true</filterable>
+          <filterLength>1</filterLength>
+        </org.biouno.unochoice.ChoiceParameter>
+        <org.biouno.unochoice.DynamicReferenceParameter plugin="uno-choice@2.1">
+          <name>PROJECT_HISTORY</name>
+          <description>&lt;p&gt;A list of previous job configuration reports. &lt;p&gt; By adding a description to the corresponding builds, you can create a concise log of job changes.</description>
+          <randomName>choice-parameter-719653105428203</randomName>
+          <visibleItemCount>1</visibleItemCount>
+          <script class="org.biouno.unochoice.model.ScriptlerScript">
+            <scriptlerScriptId>AC_RefHelper_findBuildsOnRunParam.groovy</scriptlerScriptId>
+            <parameters class="linked-hash-map">
+              <entry>
+                <string>vName</string>
+                <string>PROJECT_NAME</string>
+              </entry>
+              <entry>
+                <string>vValue</string>
+                <string>$PROJECT_NAME</string>
+              </entry>
+              <entry>
+                <string>vSearchSpace</string>
+                <string>UTIL_CONFIG_PARSER,JOB_CONFIG_ANALYZER</string>
+              </entry>
+              <entry>
+                <string>vShow</string>
+                <string>on</string>
+              </entry>
+            </parameters>
+          </script>
+          <projectName>JOB_CONFIG_ANALYZER</projectName>
+          <parameters class="linked-hash-map"/>
+          <referencedParameters>PROJECT_NAME</referencedParameters>
+          <choiceType>ET_FORMATTED_HTML</choiceType>
+          <omitValueField>false</omitValueField>
+        </org.biouno.unochoice.DynamicReferenceParameter>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+  </properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <org.jenkinsci.plugins.scriptler.builder.ScriptlerBuilder plugin="scriptler@2.9">
+      <builderId>1409780290373_2</builderId>
+      <scriptId>jobConfigParser.groovy</scriptId>
+      <propagateParams>false</propagateParams>
+      <parameters>
+        <org.jenkinsci.plugins.scriptler.config.Parameter>
+          <name>vJobName</name>
+          <value>$PROJECT_NAME</value>
+        </org.jenkinsci.plugins.scriptler.config.Parameter>
+        <org.jenkinsci.plugins.scriptler.config.Parameter>
+          <name>vWorkspace</name>
+          <value>$WORKSPACE</value>
+        </org.jenkinsci.plugins.scriptler.config.Parameter>
+        <org.jenkinsci.plugins.scriptler.config.Parameter>
+          <name>vBuildNumber</name>
+          <value>$BUILD_NUMBER</value>
+        </org.jenkinsci.plugins.scriptler.config.Parameter>
+      </parameters>
+    </org.jenkinsci.plugins.scriptler.builder.ScriptlerBuilder>
+    <org.jenkinsci.plugins.scriptler.builder.ScriptlerBuilder plugin="scriptler@2.9">
+      <builderId>1409845173902_3</builderId>
+      <scriptId>copyJobConfig.groovy</scriptId>
+      <propagateParams>false</propagateParams>
+      <parameters>
+        <org.jenkinsci.plugins.scriptler.config.Parameter>
+          <name>jobName</name>
+          <value>$PROJECT_NAME</value>
+        </org.jenkinsci.plugins.scriptler.config.Parameter>
+        <org.jenkinsci.plugins.scriptler.config.Parameter>
+          <name>fileName</name>
+          <value>config.xml</value>
+        </org.jenkinsci.plugins.scriptler.config.Parameter>
+        <org.jenkinsci.plugins.scriptler.config.Parameter>
+          <name>workspace</name>
+          <value>$WORKSPACE/jobs/$PROJECT_NAME</value>
+        </org.jenkinsci.plugins.scriptler.config.Parameter>
+      </parameters>
+    </org.jenkinsci.plugins.scriptler.builder.ScriptlerBuilder>
+    <org.jenkinsci.plugins.scriptler.builder.ScriptlerBuilder plugin="scriptler@2.9">
+      <builderId>1521222734161_4</builderId>
+      <scriptId>AC_ValueSet_fromFileColumns.groovy</scriptId>
+      <propagateParams>false</propagateParams>
+      <parameters>
+        <org.jenkinsci.plugins.scriptler.config.Parameter>
+          <name>vSearchSpace</name>
+          <value>$WORKSPACE/buildReportData</value>
+        </org.jenkinsci.plugins.scriptler.config.Parameter>
+        <org.jenkinsci.plugins.scriptler.config.Parameter>
+          <name>vXtension</name>
+          <value>csv</value>
+        </org.jenkinsci.plugins.scriptler.config.Parameter>
+        <org.jenkinsci.plugins.scriptler.config.Parameter>
+          <name>vValueColumns</name>
+          <value>PLUGIN</value>
+        </org.jenkinsci.plugins.scriptler.config.Parameter>
+        <org.jenkinsci.plugins.scriptler.config.Parameter>
+          <name>vValueSetPath</name>
+          <value>$WORKSPACE/buildReportData/plugins.csv</value>
+        </org.jenkinsci.plugins.scriptler.config.Parameter>
+      </parameters>
+    </org.jenkinsci.plugins.scriptler.builder.ScriptlerBuilder>
+    <hudson.plugins.groovy.Groovy plugin="groovy@2.0">
+      <scriptSource class="hudson.plugins.groovy.FileScriptSource">
+        <scriptFile>$JENKINS_HOME/jobScripts/groovyBuilders/writeXMLProperties_cli.groovy</scriptFile>
+      </scriptSource>
+      <groovyName>jenkinsGroovy</groovyName>
+      <parameters></parameters>
+      <scriptParameters>-w $WORKSPACE -c ${JENKINS_HOME}/jobs/${JOB_NAME}/buildProps/report.properties</scriptParameters>
+      <properties></properties>
+      <javaOpts></javaOpts>
+      <classPath></classPath>
+    </hudson.plugins.groovy.Groovy>
+    <org.jenkinsci.plugins.scriptler.builder.ScriptlerBuilder plugin="scriptler@2.9">
+      <builderId>1513371676972_3</builderId>
+      <scriptId>copyProjectFiles.groovy</scriptId>
+      <propagateParams>false</propagateParams>
+      <parameters>
+        <org.jenkinsci.plugins.scriptler.config.Parameter>
+          <name>vDestination</name>
+          <value>$WORKSPACE/scriptler/scripts</value>
+        </org.jenkinsci.plugins.scriptler.config.Parameter>
+        <org.jenkinsci.plugins.scriptler.config.Parameter>
+          <name>vPropFilePath</name>
+          <value>$WORKSPACE/buildReportData/paramProps.csv</value>
+        </org.jenkinsci.plugins.scriptler.config.Parameter>
+        <org.jenkinsci.plugins.scriptler.config.Parameter>
+          <name>vArtifactCol</name>
+          <value>6</value>
+        </org.jenkinsci.plugins.scriptler.config.Parameter>
+        <org.jenkinsci.plugins.scriptler.config.Parameter>
+          <name>vArtifactPath</name>
+          <value>$JENKINS_HOME/scriptler/scripts/</value>
+        </org.jenkinsci.plugins.scriptler.config.Parameter>
+      </parameters>
+    </org.jenkinsci.plugins.scriptler.builder.ScriptlerBuilder>
+    <org.jenkinsci.plugins.scriptler.builder.ScriptlerBuilder plugin="scriptler@2.9">
+      <builderId>1513371676972_4</builderId>
+      <scriptId>copyScriptDependencies.groovy</scriptId>
+      <propagateParams>false</propagateParams>
+      <parameters>
+        <org.jenkinsci.plugins.scriptler.config.Parameter>
+          <name>vWORKSPACE</name>
+          <value>$WORKSPACE</value>
+        </org.jenkinsci.plugins.scriptler.config.Parameter>
+        <org.jenkinsci.plugins.scriptler.config.Parameter>
+          <name>vCONFIGCSV</name>
+          <value>$WORKSPACE/buildReportData/builderProps.csv</value>
+        </org.jenkinsci.plugins.scriptler.config.Parameter>
+        <org.jenkinsci.plugins.scriptler.config.Parameter>
+          <name>vJOB_NAME</name>
+          <value>$PROJECT_NAME</value>
+        </org.jenkinsci.plugins.scriptler.config.Parameter>
+      </parameters>
+    </org.jenkinsci.plugins.scriptler.builder.ScriptlerBuilder>
+    <org.jenkinsci.plugins.scriptler.builder.ScriptlerBuilder plugin="scriptler@2.9">
+      <builderId>1496161449245_13</builderId>
+      <scriptId>copyFolders.groovy</scriptId>
+      <propagateParams>false</propagateParams>
+      <parameters>
+        <org.jenkinsci.plugins.scriptler.config.Parameter>
+          <name>vDestination</name>
+          <value>$WORKSPACE/jobs/$PROJECT_NAME</value>
+        </org.jenkinsci.plugins.scriptler.config.Parameter>
+        <org.jenkinsci.plugins.scriptler.config.Parameter>
+          <name>vParent</name>
+          <value>$JENKINS_HOME/jobs/$PROJECT_NAME</value>
+        </org.jenkinsci.plugins.scriptler.config.Parameter>
+        <org.jenkinsci.plugins.scriptler.config.Parameter>
+          <name>vFolder2Copy</name>
+          <value>buildProps,buildScripts</value>
+        </org.jenkinsci.plugins.scriptler.config.Parameter>
+      </parameters>
+    </org.jenkinsci.plugins.scriptler.builder.ScriptlerBuilder>
+    <org.jenkinsci.plugins.scriptler.builder.ScriptlerBuilder plugin="scriptler@2.9">
+      <builderId>1524774249851_1</builderId>
+      <scriptId>parametrizeTemplate.groovy</scriptId>
+      <propagateParams>false</propagateParams>
+      <parameters>
+        <org.jenkinsci.plugins.scriptler.config.Parameter>
+          <name>vTemplateURLPath</name>
+          <value>$JENKINS_HOME/jobs/$JOB_NAME/buildProps/build.gradleTemplate</value>
+        </org.jenkinsci.plugins.scriptler.config.Parameter>
+        <org.jenkinsci.plugins.scriptler.config.Parameter>
+          <name>vTemplateParam</name>
+          <value>JOB_NAME</value>
+        </org.jenkinsci.plugins.scriptler.config.Parameter>
+        <org.jenkinsci.plugins.scriptler.config.Parameter>
+          <name>vParamValue</name>
+          <value>$PROJECT_NAME</value>
+        </org.jenkinsci.plugins.scriptler.config.Parameter>
+        <org.jenkinsci.plugins.scriptler.config.Parameter>
+          <name>vOutfolder</name>
+          <value>$WORKSPACE</value>
+        </org.jenkinsci.plugins.scriptler.config.Parameter>
+      </parameters>
+    </org.jenkinsci.plugins.scriptler.builder.ScriptlerBuilder>
+  </builders>
+  <publishers>
+    <hudson.tasks.ArtifactArchiver>
+      <artifacts>*.*, jobs/$PROJECT_NAME/*.*, scriptler/scripts/*.*,externalScripts/*.*,buildReportData/*.*,embeddedScripts/*.*,jobs/$PROJECT_NAME/buildProps/*.*,jobs/$PROJECT_NAME/buildScripts/*.*</artifacts>
+      <allowEmptyArchive>false</allowEmptyArchive>
+      <onlyIfSuccessful>false</onlyIfSuccessful>
+      <fingerprint>false</fingerprint>
+      <defaultExcludes>true</defaultExcludes>
+      <caseSensitive>true</caseSensitive>
+    </hudson.tasks.ArtifactArchiver>
+    <hudson.plugins.summary__report.ACIPluginPublisher plugin="summary_report@1.15">
+      <name>*.xml</name>
+      <shownOnProjectPage>false</shownOnProjectPage>
+    </hudson.plugins.summary__report.ACIPluginPublisher>
+    <hudson.tasks.Fingerprinter>
+      <targets>jobs/$PROJECT_NAME/*.*, scriptler/scripts/*.*,externalScripts/*.*,embeddedScripts/*.*,jobs/$PROJECT_NAME/buildProps/*.*,jobs/$PROJECT_NAME/buildScripts/*.*</targets>
+    </hudson.tasks.Fingerprinter>
+    <hudson.plugins.ws__cleanup.WsCleanup plugin="ws-cleanup@0.32">
+      <patterns class="empty-list"/>
+      <deleteDirs>false</deleteDirs>
+      <skipWhenFailed>false</skipWhenFailed>
+      <cleanWhenSuccess>true</cleanWhenSuccess>
+      <cleanWhenUnstable>true</cleanWhenUnstable>
+      <cleanWhenFailure>true</cleanWhenFailure>
+      <cleanWhenNotBuilt>true</cleanWhenNotBuilt>
+      <cleanWhenAborted>true</cleanWhenAborted>
+      <notFailBuild>false</notFailBuild>
+      <cleanupMatrixParent>false</cleanupMatrixParent>
+      <externalDelete></externalDelete>
+    </hudson.plugins.ws__cleanup.WsCleanup>
+  </publishers>
+  <buildWrappers>
+    <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.3">
+      <template>${ENV,var=&quot;PROJECT_NAME&quot;}_${ENV,var=&quot;BUILD_NUMBER&quot;}</template>
+    </org.jenkinsci.plugins.buildnamesetter.BuildNameSetter>
+  </buildWrappers>
+</project>
