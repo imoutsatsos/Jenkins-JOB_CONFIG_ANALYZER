@@ -21,7 +21,7 @@ def outfolder = vOutfolder
 def theTemplate='' //will be read from URL or Local File Path
 
 def templateBinding=[:]
-
+ 
 /*create a default file name for the text file
 * Name from Template file name by removing the case insensitive string 'template'
 * */
@@ -36,8 +36,8 @@ tParams.each{
 }
 
 switch(templateURLPath){
- case ~/http:.*/:
- 
+ case ~/https:.*/:
+ 	println templateURLPath
     theTemplate=templateURLPath.toURL().getText()
  break
  default:
@@ -53,6 +53,12 @@ pTemplate=new File("$outfolder/$textName")
 pTemplateWriter= pTemplate.newWriter(false)
 engine = new groovy.text.GStringTemplateEngine()
 arrayTemplate = engine.createTemplate(theTemplate)
-pTemplateWriter<< arrayTemplate.make(templateBinding)
-pTemplateWriter.flush()
-pTemplateWriter.close()
+try{
+  pTemplateWriter<< arrayTemplate.make(templateBinding)
+  pTemplateWriter.flush()
+  pTemplateWriter.close()
+} catch(Exception e) {
+	println e.getMessage()
+}
+
+return 'Success: (from parametrizeTemplate)'

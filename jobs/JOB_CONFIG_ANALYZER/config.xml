@@ -1,5 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<project>
+<?xml version="1.1" encoding="UTF-8" standalone="no"?><project>
   <actions/>
   <description>A parser and report generator for a Jenkins project configuration. Helps generate a simple project summary and configuration archive.</description>
   <keepDependencies>false</keepDependencies>
@@ -17,7 +16,7 @@ Galaxy: tool.tool_type</description>
         </metadata-string>
         <metadata-string>
           <name>output-format</name>
-          <description>This is the data type of the output file. It can be one of the supported data types ( e.g., &quot;tabular&quot; ) or the format of the tool&apos;s input dataset ( e.g., format=&quot;input&quot; ). 
+          <description>This is the data type of the output file. It can be one of the supported data types ( e.g., "tabular" ) or the format of the tool's input dataset ( e.g., format="input" ). 
 It can also be an image type if the output is destined for visualization</description>
           <parent class="job-metadata" reference="../../.."/>
           <generated>false</generated>
@@ -26,27 +25,28 @@ It can also be an image type if the output is destined for visualization</descri
         </metadata-string>
         <metadata-string>
           <name>metadata-source</name>
-          <description>This reads the metadata information from the tool&apos;s input dataset properties file(named with the extension.properties)</description>
+          <description>This reads the metadata information from the tool's input dataset properties file(named with the extension.properties)</description>
           <parent class="job-metadata" reference="../../.."/>
           <generated>false</generated>
           <exposedToEnvironment>true</exposedToEnvironment>
           <value>properties</value>
         </metadata-string>
         <metadata-string>
-          <name>project-revision</name>
-          <description>Last SVN revision number that this is based on. If modifications are made then add -mod to this revision number</description>
+          <name>project-repository</name>
+          <description>Bitbucket repository for this project. example https://bitbucket.org/novartisnibr/qmic-job_name
+Clear if no repository </description>
           <parent class="job-metadata" reference="../../.."/>
           <generated>false</generated>
           <exposedToEnvironment>true</exposedToEnvironment>
-          <value></value>
+          <value/>
         </metadata-string>
         <metadata-string>
-          <name>deprecated</name>
-          <description>A flag (true/false) to indicate whether a job is deprecated or active</description>
+          <name>project-status</name>
+          <description>A status flag for the project.(test,demo,production,deprecated)</description>
           <parent class="job-metadata" reference="../../.."/>
           <generated>false</generated>
           <exposedToEnvironment>false</exposedToEnvironment>
-          <value>false</value>
+          <value>test</value>
         </metadata-string>
         <metadata-tree>
           <name>stats-engine</name>
@@ -72,6 +72,20 @@ It can also be an image type if the output is destined for visualization</descri
             </metadata-string>
           </children>
         </metadata-tree>
+        <metadata-string>
+          <name>project-revision</name>
+          <parent class="job-metadata" reference="../../.."/>
+          <generated>false</generated>
+          <exposedToEnvironment>true</exposedToEnvironment>
+          <value/>
+        </metadata-string>
+        <metadata-string>
+          <name>deprecated</name>
+          <parent class="job-metadata" reference="../../.."/>
+          <generated>false</generated>
+          <exposedToEnvironment>false</exposedToEnvironment>
+          <value>false</value>
+        </metadata-string>
         <metadata-tree>
           <name>job-info</name>
           <parent class="job-metadata" reference="../../.."/>
@@ -80,19 +94,19 @@ It can also be an image type if the output is destined for visualization</descri
           <children class="linked-list">
             <metadata-tree>
               <name>last-saved</name>
-              <description></description>
+              <description/>
               <parent class="metadata-tree" reference="../../.."/>
               <generated>true</generated>
               <exposedToEnvironment>false</exposedToEnvironment>
               <children class="linked-list">
                 <metadata-date>
                   <name>time</name>
-                  <description></description>
+                  <description/>
                   <parent class="metadata-tree" reference="../../.."/>
                   <generated>true</generated>
                   <exposedToEnvironment>false</exposedToEnvironment>
                   <value>
-                    <time>1524774250867</time>
+                    <time>1654703555246</time>
                     <timezone>America/New_York</timezone>
                   </value>
                   <checked>false</checked>
@@ -105,7 +119,7 @@ It can also be an image type if the output is destined for visualization</descri
                   <children class="linked-list">
                     <metadata-string>
                       <name>display-name</name>
-                      <description></description>
+                      <description/>
                       <parent class="metadata-tree" reference="../../.."/>
                       <generated>true</generated>
                       <exposedToEnvironment>false</exposedToEnvironment>
@@ -113,7 +127,7 @@ It can also be an image type if the output is destined for visualization</descri
                     </metadata-string>
                     <metadata-string>
                       <name>full-name</name>
-                      <description></description>
+                      <description/>
                       <parent class="metadata-tree" reference="../../.."/>
                       <generated>true</generated>
                       <exposedToEnvironment>false</exposedToEnvironment>
@@ -127,13 +141,13 @@ It can also be an image type if the output is destined for visualization</descri
         </metadata-tree>
       </values>
     </job-metadata>
-    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.25">
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.31">
       <autoRebuild>false</autoRebuild>
       <rebuildDisabled>false</rebuildDisabled>
     </com.sonyericsson.rebuild.RebuildSettings>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
-        <org.biouno.unochoice.ChoiceParameter plugin="uno-choice@2.1">
+        <org.biouno.unochoice.ChoiceParameter plugin="uno-choice@2.3">
           <name>PROJECT_NAME</name>
           <description>&lt;p&gt;Select a Jenkins Project/Job to review</description>
           <randomName>choice-parameter-1249407980061711</randomName>
@@ -143,11 +157,18 @@ It can also be an image type if the output is destined for visualization</descri
             <parameters class="linked-hash-map"/>
           </script>
           <projectName>JOB_CONFIG_ANALYZER</projectName>
+          <projectFullName>JOB_CONFIG_ANALYZER</projectFullName>
           <choiceType>PT_SINGLE_SELECT</choiceType>
           <filterable>true</filterable>
           <filterLength>1</filterLength>
         </org.biouno.unochoice.ChoiceParameter>
-        <org.biouno.unochoice.DynamicReferenceParameter plugin="uno-choice@2.1">
+        <hudson.model.StringParameterDefinition>
+          <name>BUILD_DESCRIPTION</name>
+          <description>Use a JIRA issue identifier (if applicable) and a short description</description>
+          <defaultValue/>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <org.biouno.unochoice.DynamicReferenceParameter plugin="uno-choice@2.3">
           <name>PROJECT_HISTORY</name>
           <description>&lt;p&gt;A list of previous job configuration reports. &lt;p&gt; By adding a description to the corresponding builds, you can create a concise log of job changes.</description>
           <randomName>choice-parameter-719653105428203</randomName>
@@ -165,7 +186,7 @@ It can also be an image type if the output is destined for visualization</descri
               </entry>
               <entry>
                 <string>vSearchSpace</string>
-                <string>UTIL_CONFIG_PARSER,JOB_CONFIG_ANALYZER</string>
+                <string>JOB_CONFIG_ANALYZER</string>
               </entry>
               <entry>
                 <string>vShow</string>
@@ -174,6 +195,7 @@ It can also be an image type if the output is destined for visualization</descri
             </parameters>
           </script>
           <projectName>JOB_CONFIG_ANALYZER</projectName>
+          <projectFullName>JOB_CONFIG_ANALYZER</projectFullName>
           <parameters class="linked-hash-map"/>
           <referencedParameters>PROJECT_NAME</referencedParameters>
           <choiceType>ET_FORMATTED_HTML</choiceType>
@@ -181,6 +203,7 @@ It can also be an image type if the output is destined for visualization</descri
         </org.biouno.unochoice.DynamicReferenceParameter>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
+    
   </properties>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
@@ -190,7 +213,7 @@ It can also be an image type if the output is destined for visualization</descri
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
-    <org.jenkinsci.plugins.scriptler.builder.ScriptlerBuilder plugin="scriptler@2.9">
+    <org.jenkinsci.plugins.scriptler.builder.ScriptlerBuilder plugin="scriptler@3.1">
       <builderId>1409780290373_2</builderId>
       <scriptId>jobConfigParser.groovy</scriptId>
       <propagateParams>false</propagateParams>
@@ -209,7 +232,7 @@ It can also be an image type if the output is destined for visualization</descri
         </org.jenkinsci.plugins.scriptler.config.Parameter>
       </parameters>
     </org.jenkinsci.plugins.scriptler.builder.ScriptlerBuilder>
-    <org.jenkinsci.plugins.scriptler.builder.ScriptlerBuilder plugin="scriptler@2.9">
+    <org.jenkinsci.plugins.scriptler.builder.ScriptlerBuilder plugin="scriptler@3.1">
       <builderId>1409845173902_3</builderId>
       <scriptId>copyJobConfig.groovy</scriptId>
       <propagateParams>false</propagateParams>
@@ -228,7 +251,7 @@ It can also be an image type if the output is destined for visualization</descri
         </org.jenkinsci.plugins.scriptler.config.Parameter>
       </parameters>
     </org.jenkinsci.plugins.scriptler.builder.ScriptlerBuilder>
-    <org.jenkinsci.plugins.scriptler.builder.ScriptlerBuilder plugin="scriptler@2.9">
+    <org.jenkinsci.plugins.scriptler.builder.ScriptlerBuilder plugin="scriptler@3.1">
       <builderId>1521222734161_4</builderId>
       <scriptId>AC_ValueSet_fromFileColumns.groovy</scriptId>
       <propagateParams>false</propagateParams>
@@ -251,18 +274,30 @@ It can also be an image type if the output is destined for visualization</descri
         </org.jenkinsci.plugins.scriptler.config.Parameter>
       </parameters>
     </org.jenkinsci.plugins.scriptler.builder.ScriptlerBuilder>
-    <hudson.plugins.groovy.Groovy plugin="groovy@2.0">
-      <scriptSource class="hudson.plugins.groovy.FileScriptSource">
-        <scriptFile>$JENKINS_HOME/jobScripts/groovyBuilders/writeXMLProperties_cli.groovy</scriptFile>
-      </scriptSource>
-      <groovyName>jenkinsGroovy</groovyName>
-      <parameters></parameters>
-      <scriptParameters>-w $WORKSPACE -c ${JENKINS_HOME}/jobs/${JOB_NAME}/buildProps/report.properties</scriptParameters>
-      <properties></properties>
-      <javaOpts></javaOpts>
-      <classPath></classPath>
-    </hudson.plugins.groovy.Groovy>
-    <org.jenkinsci.plugins.scriptler.builder.ScriptlerBuilder plugin="scriptler@2.9">
+    <org.jenkinsci.plugins.scriptler.builder.ScriptlerBuilder plugin="scriptler@3.1">
+      <builderId>1583871862891_3</builderId>
+      <scriptId>writeXMLProperties_scriptlet.groovy</scriptId>
+      <propagateParams>true</propagateParams>
+      <parameters>
+        <org.jenkinsci.plugins.scriptler.config.Parameter>
+          <name>workspaceVar</name>
+          <value>$WORKSPACE</value>
+        </org.jenkinsci.plugins.scriptler.config.Parameter>
+        <org.jenkinsci.plugins.scriptler.config.Parameter>
+          <name>configProps</name>
+          <value>${JENKINS_HOME}/jobs/${JOB_NAME}/buildProps/report.properties</value>
+        </org.jenkinsci.plugins.scriptler.config.Parameter>
+        <org.jenkinsci.plugins.scriptler.config.Parameter>
+          <name>BUILD_NUMBER</name>
+          <value>$BUILD_NUMBER</value>
+        </org.jenkinsci.plugins.scriptler.config.Parameter>
+        <org.jenkinsci.plugins.scriptler.config.Parameter>
+          <name>THIS_JOB</name>
+          <value>JOB_CONFIG_ANALYZER</value>
+        </org.jenkinsci.plugins.scriptler.config.Parameter>
+      </parameters>
+    </org.jenkinsci.plugins.scriptler.builder.ScriptlerBuilder>
+    <org.jenkinsci.plugins.scriptler.builder.ScriptlerBuilder plugin="scriptler@3.1">
       <builderId>1513371676972_3</builderId>
       <scriptId>copyProjectFiles.groovy</scriptId>
       <propagateParams>false</propagateParams>
@@ -285,7 +320,7 @@ It can also be an image type if the output is destined for visualization</descri
         </org.jenkinsci.plugins.scriptler.config.Parameter>
       </parameters>
     </org.jenkinsci.plugins.scriptler.builder.ScriptlerBuilder>
-    <org.jenkinsci.plugins.scriptler.builder.ScriptlerBuilder plugin="scriptler@2.9">
+    <org.jenkinsci.plugins.scriptler.builder.ScriptlerBuilder plugin="scriptler@3.1">
       <builderId>1513371676972_4</builderId>
       <scriptId>copyScriptDependencies.groovy</scriptId>
       <propagateParams>false</propagateParams>
@@ -304,7 +339,7 @@ It can also be an image type if the output is destined for visualization</descri
         </org.jenkinsci.plugins.scriptler.config.Parameter>
       </parameters>
     </org.jenkinsci.plugins.scriptler.builder.ScriptlerBuilder>
-    <org.jenkinsci.plugins.scriptler.builder.ScriptlerBuilder plugin="scriptler@2.9">
+    <org.jenkinsci.plugins.scriptler.builder.ScriptlerBuilder plugin="scriptler@3.1">
       <builderId>1496161449245_13</builderId>
       <scriptId>copyFolders.groovy</scriptId>
       <propagateParams>false</propagateParams>
@@ -323,22 +358,22 @@ It can also be an image type if the output is destined for visualization</descri
         </org.jenkinsci.plugins.scriptler.config.Parameter>
       </parameters>
     </org.jenkinsci.plugins.scriptler.builder.ScriptlerBuilder>
-    <org.jenkinsci.plugins.scriptler.builder.ScriptlerBuilder plugin="scriptler@2.9">
+    <org.jenkinsci.plugins.scriptler.builder.ScriptlerBuilder plugin="scriptler@3.1">
       <builderId>1524774249851_1</builderId>
       <scriptId>parametrizeTemplate.groovy</scriptId>
       <propagateParams>false</propagateParams>
       <parameters>
         <org.jenkinsci.plugins.scriptler.config.Parameter>
           <name>vTemplateURLPath</name>
-          <value>$JENKINS_HOME/jobs/$JOB_NAME/buildProps/build.gradleTemplate</value>
+          <value>https://nrusca-sd189.nibr.novartis.net/userContent/templates/build.gradleTemplate</value>
         </org.jenkinsci.plugins.scriptler.config.Parameter>
         <org.jenkinsci.plugins.scriptler.config.Parameter>
           <name>vTemplateParam</name>
-          <value>JOB_NAME</value>
+          <value>JOB_NAME,BUILD_RECORD_ROOT</value>
         </org.jenkinsci.plugins.scriptler.config.Parameter>
         <org.jenkinsci.plugins.scriptler.config.Parameter>
           <name>vParamValue</name>
-          <value>$PROJECT_NAME</value>
+          <value>$PROJECT_NAME,$BUILD_RECORD_ROOT</value>
         </org.jenkinsci.plugins.scriptler.config.Parameter>
         <org.jenkinsci.plugins.scriptler.config.Parameter>
           <name>vOutfolder</name>
@@ -346,10 +381,52 @@ It can also be an image type if the output is destined for visualization</descri
         </org.jenkinsci.plugins.scriptler.config.Parameter>
       </parameters>
     </org.jenkinsci.plugins.scriptler.builder.ScriptlerBuilder>
+    <org.jenkinsci.plugins.scriptler.builder.ScriptlerBuilder plugin="scriptler@3.1">
+      <builderId>1559225392941_3</builderId>
+      <scriptId>parametrizeTemplate.groovy</scriptId>
+      <propagateParams>false</propagateParams>
+      <parameters>
+        <org.jenkinsci.plugins.scriptler.config.Parameter>
+          <name>vTemplateURLPath</name>
+          <value>https://nrusca-sd189.nibr.novartis.net/userContent/templates/README.mdTemplate</value>
+        </org.jenkinsci.plugins.scriptler.config.Parameter>
+        <org.jenkinsci.plugins.scriptler.config.Parameter>
+          <name>vTemplateParam</name>
+          <value>PROJECT_NAME,WORKSPACE</value>
+        </org.jenkinsci.plugins.scriptler.config.Parameter>
+        <org.jenkinsci.plugins.scriptler.config.Parameter>
+          <name>vParamValue</name>
+          <value>$PROJECT_NAME,$WORKSPACE</value>
+        </org.jenkinsci.plugins.scriptler.config.Parameter>
+        <org.jenkinsci.plugins.scriptler.config.Parameter>
+          <name>vOutfolder</name>
+          <value>$WORKSPACE</value>
+        </org.jenkinsci.plugins.scriptler.config.Parameter>
+      </parameters>
+    </org.jenkinsci.plugins.scriptler.builder.ScriptlerBuilder>
+    <org.jenkinsci.plugins.scriptler.builder.ScriptlerBuilder plugin="scriptler@3.1">
+      <builderId>1583163790941_1</builderId>
+      <scriptId>graphFreeStyleParams.groovy</scriptId>
+      <propagateParams>false</propagateParams>
+      <parameters>
+        <org.jenkinsci.plugins.scriptler.config.Parameter>
+          <name>jobName</name>
+          <value>$PROJECT_NAME</value>
+        </org.jenkinsci.plugins.scriptler.config.Parameter>
+        <org.jenkinsci.plugins.scriptler.config.Parameter>
+          <name>paramDotPath</name>
+          <value>$WORKSPACE/paramdot.dot</value>
+        </org.jenkinsci.plugins.scriptler.config.Parameter>
+      </parameters>
+    </org.jenkinsci.plugins.scriptler.builder.ScriptlerBuilder>
+    <hudson.tasks.BatchFile>
+      <command>cd D:\UTILS\release\bin\&#13;
+dot -o%WORKSPACE%/paramDepGraph.svg -Tsvg %WORKSPACE%\paramdot.dot</command>
+    </hudson.tasks.BatchFile>
   </builders>
   <publishers>
     <hudson.tasks.ArtifactArchiver>
-      <artifacts>*.*, jobs/$PROJECT_NAME/*.*, scriptler/scripts/*.*,externalScripts/*.*,buildReportData/*.*,embeddedScripts/*.*,jobs/$PROJECT_NAME/buildProps/*.*,jobs/$PROJECT_NAME/buildScripts/*.*</artifacts>
+      <artifacts>*.*, jobs/$PROJECT_NAME/*.*, scriptler/scripts/*.*,externalScripts/*.*,jobInfo/*.*,buildReportData/*.*,embeddedScripts/*.*,jobs/$PROJECT_NAME/buildProps/*.*,jobs/$PROJECT_NAME/buildScripts/*.*</artifacts>
       <allowEmptyArchive>false</allowEmptyArchive>
       <onlyIfSuccessful>false</onlyIfSuccessful>
       <fingerprint>false</fingerprint>
@@ -361,25 +438,37 @@ It can also be an image type if the output is destined for visualization</descri
       <shownOnProjectPage>false</shownOnProjectPage>
     </hudson.plugins.summary__report.ACIPluginPublisher>
     <hudson.tasks.Fingerprinter>
-      <targets>jobs/$PROJECT_NAME/*.*, scriptler/scripts/*.*,externalScripts/*.*,embeddedScripts/*.*,jobs/$PROJECT_NAME/buildProps/*.*,jobs/$PROJECT_NAME/buildScripts/*.*</targets>
+      <targets>jobs/$PROJECT_NAME/*.*, scriptler/scripts/*.*,externalScripts/*.*,jobInfo/*.*,embeddedScripts/*.*,jobs/$PROJECT_NAME/buildProps/*.*,jobs/$PROJECT_NAME/buildScripts/*.*</targets>
+      <defaultExcludes>true</defaultExcludes>
+      <caseSensitive>true</caseSensitive>
     </hudson.tasks.Fingerprinter>
-    <hudson.plugins.ws__cleanup.WsCleanup plugin="ws-cleanup@0.32">
+    <hudson.plugins.ws__cleanup.WsCleanup plugin="ws-cleanup@0.38">
       <patterns class="empty-list"/>
       <deleteDirs>false</deleteDirs>
       <skipWhenFailed>false</skipWhenFailed>
       <cleanWhenSuccess>true</cleanWhenSuccess>
       <cleanWhenUnstable>true</cleanWhenUnstable>
-      <cleanWhenFailure>true</cleanWhenFailure>
+      <cleanWhenFailure>false</cleanWhenFailure>
       <cleanWhenNotBuilt>true</cleanWhenNotBuilt>
       <cleanWhenAborted>true</cleanWhenAborted>
       <notFailBuild>false</notFailBuild>
       <cleanupMatrixParent>false</cleanupMatrixParent>
-      <externalDelete></externalDelete>
+      <externalDelete/>
+      <disableDeferredWipeout>false</disableDeferredWipeout>
     </hudson.plugins.ws__cleanup.WsCleanup>
   </publishers>
   <buildWrappers>
-    <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.3">
-      <template>${ENV,var=&quot;PROJECT_NAME&quot;}_${ENV,var=&quot;BUILD_NUMBER&quot;}</template>
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.38">
+      <deleteDirs>false</deleteDirs>
+      <cleanupParameter/>
+      <externalDelete/>
+      <disableDeferredWipeout>false</disableDeferredWipeout>
+    </hudson.plugins.ws__cleanup.PreBuildCleanup>
+    <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@2.1.0">
+      <template>${ENV,var="PROJECT_NAME"}_${ENV,var="BUILD_NUMBER"}</template>
+      <descriptionTemplate>${ENV,var="BUILD_DESCRIPTION"}</descriptionTemplate>
+      <runAtStart>true</runAtStart>
+      <runAtEnd>true</runAtEnd>
     </org.jenkinsci.plugins.buildnamesetter.BuildNameSetter>
   </buildWrappers>
 </project>

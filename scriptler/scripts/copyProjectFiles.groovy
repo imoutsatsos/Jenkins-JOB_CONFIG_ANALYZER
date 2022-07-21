@@ -15,7 +15,7 @@ scriptFile=new File(scriptPath)
 assert scriptFile.exists()
 copyFile(scriptFile,workspace,scriptName)
 }
-
+return 'Success: (from copyProjectFiles )'
 
 
 
@@ -60,7 +60,6 @@ scriptPaths.put(scriptName,scriptPath)
     
   }
 }
-  println scriptPaths
 return scriptPaths
 }
 

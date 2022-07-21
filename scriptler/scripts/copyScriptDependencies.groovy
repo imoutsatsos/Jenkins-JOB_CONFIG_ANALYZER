@@ -33,12 +33,12 @@ getProjectScripts(propFilePath).each{
         case"Groovy":
             copySource=it.CODE_LINK
             copyDestination=copyDest.groovy
-            if (copySource.startsWith('http://')){
+            if (copySource.startsWith('https://')){
             it.SKIPCOPY_FLAG=true
             }
             break
         default:
-              if (['commandScript','null','NA','R-script'].contains(it.SCRIPT_ID)){
+              if (['commandScript','null','NA','R_script','SSH_Script','BatchFile'].contains(it.SCRIPT_ID)){
                 println "Skipping COPY of ${it.TYPE}-${it.SCRIPT_ID}"
                 it.SKIPCOPY_FLAG=true
               }else{
@@ -59,6 +59,8 @@ getProjectScripts(propFilePath).each{
   copyFile(scriptFile,copyDestination,it.SCRIPT_ID)
   }
 }
+
+return 'Success (from copyScriptDependencies)'
 
 /*
 a method to create property map of the project script files
@@ -104,7 +106,7 @@ def replaceGlobalVars(path, projectName){
     env = System.getenv()
     myEnv=env+[JOB_NAME:projectName]       
     myEnv.each{k,v->
-    println k+':'+v
+    //println k+':'+v
         if (path .contains('$'+k)){
             path=path.replace('$'+k,v)
             println "REPLACED ENVV VAR:$path"
